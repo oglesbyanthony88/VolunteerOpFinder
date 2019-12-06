@@ -1,6 +1,6 @@
 
 class VolunteerMatch::Opportunity
-  attr_accessor :name, :url
+  attr_accessor :name, :url # add DAF here as attributes
 
   @@all = []
 

@@ -22,3 +22,6 @@ class VolunteerMatch::Scrape
     end
 
 end
+
+
+# change D A F to attributes for the object

@@ -32,7 +32,7 @@ class VolunteerMatch::CLI
     @input
   end
 
-  def verify
+  def verify  #put in own checks in case of strings or to few/to many numbers.
     @zip = ZipCodes.identify("#{@input}")
      if @zip != nil
        puts "====================================================".colorize(:light_blue)
@@ -85,6 +85,7 @@ class VolunteerMatch::CLI
    def scrape_and_display_opportunity_info(choice)
     opp = VolunteerMatch::Opportunity.all[choice -1]
     VolunteerMatch::Scrape.scrape_info(opp)
+    # display info object
    end
 
    def self.display_info(description, address, foundation_info)
@@ -128,5 +129,5 @@ class VolunteerMatch::CLI
      exit
    end
 
-# git@github.com:oglesbyanthony88/VolunteerOpFinder.git
+
 end
