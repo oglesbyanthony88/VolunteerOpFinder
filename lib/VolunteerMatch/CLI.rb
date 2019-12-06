@@ -8,9 +8,6 @@ class VolunteerMatch::CLI
     VolunteerMatch::Scrape.scrape_names(@input)
     list_names
     make_choice
-    scrape_and_display_opportunity_info
-    self.display_info
-    more_options
   end
 
 
@@ -67,6 +64,7 @@ class VolunteerMatch::CLI
        if choice_valid?(choice.to_i)
          choice = choice.to_i
          scrape_and_display_opportunity_info(choice)
+         more_options
        elsif choice == 'exit'
          goodbye
        elsif choice == 'relist'
@@ -105,13 +103,19 @@ class VolunteerMatch::CLI
    end
 
    def more_options
-     puts "Would you like to restart? Type restart then hit enter."
-     puts "Would you like to leave? Type exit then hit enter."
+     puts "----------------------".colorize(:yellow)
+     puts "Would you like to make a new choice? Type relist then hit enter.".colorize(:yellow)
+     puts "Would you like to restart? Type restart then hit enter.".colorize(:yellow)
+     puts "Would you like to leave? Type exit then hit enter.".colorize(:yellow)
+     puts "----------------------".colorize(:yellow)
      selection = gets.chomp.downcase
      if selection == "exit"
        goodbye
      elsif selection == "restart"
        VolunteerMatch::CLI.new.start
+     elsif selection == "relist"
+       list_names
+       make_choice
      else
        puts "Sorry, that was not an option.".colorize(:red)
        more_options
@@ -121,7 +125,8 @@ class VolunteerMatch::CLI
    def goodbye
      puts "Hope you found what you were looking for.".colorize(:light_blue)
      puts "Goodbye".colorize(:light_blue)
+     exit
    end
 
-
+# git@github.com:oglesbyanthony88/VolunteerOpFinder.git
 end

@@ -4,7 +4,7 @@ class VolunteerMatch::Scrape
       page = Nokogiri(open("https://www.volunteermatch.org/search/?l="+"#{input}"))
       titles = page.css("div.searchitem.PUBLIC")
       title_hash = titles.each do |section|
-        volunteer_title = section.css("h3").text.gsub(/[\r\n\t\"{}]+/m, "")
+        volunteer_title = section.css("h3").text.gsub(/[\r\n\t\"{}]+/m, "").strip
         urls = section.css('a')[0]['href']
          # binding.pry
         VolunteerMatch::Opportunity.new(volunteer_title, urls)
@@ -16,7 +16,8 @@ class VolunteerMatch::Scrape
       page = Nokogiri(open(site + opp_obj.url))
       description = page.css("div#short_desc").css("p").text.gsub(/[\r\n\t\"{}]+/m, "")
       address = page.css("p.left").text.gsub(/[\r\n\t\"{}]+/m, "")
-      foundation_info = page.css("section#tertiary-content").css("p").text.gsub(/[\r\n\t\"{}]+/m, "")
+      foundation_info = page.css("section#tertiary-content").css("p")[1].text.gsub(/[\r\n\t\"{}]+/m, "")
+      # binding.pry
       VolunteerMatch::CLI.display_info(description, address, foundation_info)
     end
 
