@@ -5,7 +5,7 @@ require 'zip-codes'
 require 'colorize'
 
 
- require_relative "VolunteerMatch/version"
- require_relative "VolunteerMatch/scrape"
- require_relative "VolunteerMatch/CLI"
- require_relative "VolunteerMatch/opportunity"
+ require_relative "volunteer_match/version"
+ require_relative "volunteer_match/scrape"
+ require_relative "volunteer_match/CLI"
+ require_relative "volunteer_match/opportunity"
